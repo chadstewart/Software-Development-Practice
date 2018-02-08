@@ -5,11 +5,7 @@
  *      Author: chadstewart
  */
 
-#include <iostream>
-
 #include "stack.h"
-
-using namespace std;
 
 stack::stack()
 {

@@ -1,7 +1,7 @@
 /*
  * list.h
  *
- *  Created on: Feb 7, 2018
+ *  Created on: Feb 8, 2018
  *      Author: chadstewart
  */
 
@@ -21,7 +21,6 @@ private:
 	{
 		string data;
 		node* next;
-		node* previous;
 	}* nodePtr;
 
 	nodePtr head;
@@ -36,6 +35,8 @@ public:
 	void printList();
 
 };
+
+
 
 
 

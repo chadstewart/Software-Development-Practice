@@ -9,18 +9,18 @@
 
 #include "list.h"
 
-using namespace std;
-
 list::list()
 {
 	head = NULL;
 	current = NULL;
+	temp = NULL;
 }
 
 void list::addNode(string addName){
 
 	nodePtr n = new node;
 	n->next = NULL;
+	n->previous = NULL;
 	n->data = addName;
 
 	if(head != NULL)
@@ -37,7 +37,6 @@ void list::addNode(string addName){
 	}
 	else
 	{
-		n->previous = NULL;
 		head = n;
 	}
 }
@@ -46,12 +45,33 @@ void list::deleteNode()
 {
 	current = head;
 
-	while(current->next != NULL)
+	if(head != NULL)
 	{
-		current = current->next;
+
+		if(head->next != NULL)
+		{
+
+			while(current->next != NULL)
+			{
+				current = current->next;
+			}
+
+			temp = current->previous;
+			temp->next = NULL;
+			delete current;
+
+		}
+		else
+		{
+			delete current;
+		}
+
+	}
+	else
+	{
+		cout << "There are no list items to delete!" << endl;
 	}
 
-	delete current;
 }
 
 void list::printList()

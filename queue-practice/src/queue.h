@@ -1,16 +1,16 @@
 /*
- * stack.h
+ * queue.h
  *
- *  Created on: Feb 7, 2018
+ *  Created on: Feb 8, 2018
  *      Author: chadstewart
  */
 
-#ifndef STACK_H_
-#define STACK_H_
+#ifndef QUEUE_H_
+#define QUEUE_H_
 
 #include "list.h"
 
-class stack
+class queue
 {
 
 private:
@@ -19,7 +19,7 @@ private:
 
 public:
 
-	stack();
+	queue();
 	void push(string addName);
 	void pop();
 
@@ -27,4 +27,6 @@ public:
 
 
 
-#endif /* STACK_H_ */
+
+
+#endif /* QUEUE_H_ */
