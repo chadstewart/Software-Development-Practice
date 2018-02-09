@@ -49,16 +49,17 @@ void list::deleteNode(string nameToDelete)
 	temp = head;
 	current = head;
 
-	do{
-		if(counter == false)
+	while(counter == false && current->data != nameToDelete)
+	{
+		if(current->last == true)
 		{
 			counter = true;
 		}
 		temp = current;
 		current = current->next;
-	}while(current != head && current->data != nameToDelete);
+	}
 
-	if (current == head && counter == true)
+	if (counter == true)
 	{
 			cout << "Data was not in the list.\n";
 			delete delPtr;
@@ -77,6 +78,7 @@ void list::deleteNode(string nameToDelete)
 		if(delPtr->last == true)
 		{
 			temp->last = true;
+			temp->next = head;
 
 			if(temp == head)
 			{
@@ -91,26 +93,28 @@ void list::deleteNode(string nameToDelete)
 
 }
 
-bool list::printList(int numOfPrintsAfterLast)
+void list::printList(int numOfPrintsAfterLast)
 {
 
 	current = head;
-	int counter = NULL;
+	int counter = -1;
+	bool firstPass = false;
 
 	if(head->last == true)
 	{
-		return true;
+		cout << "There is only one item: " << current->data << endl;
+		return;
 	}
 
-	while(counter > numOfPrintsAfterLast)
+	while(counter < numOfPrintsAfterLast)
 	{
-		if(counter != NULL)
+		if(counter != -1)
 		{
 			counter++;
 		}
-
-		if(current->last == true)
+		else if(current->last == true && firstPass == false)
 		{
+			firstPass = true;
 			counter = 0;
 		}
 
@@ -118,7 +122,6 @@ bool list::printList(int numOfPrintsAfterLast)
 		current = current->next;
 	}
 
-	return false;
 }
 
 

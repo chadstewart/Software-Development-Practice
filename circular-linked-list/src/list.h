@@ -33,7 +33,7 @@ public:
 	list();
 	void addNode(string name);
 	void deleteNode(string name);
-	bool printList(int numOfPrintsAfterLast);
+	void printList(int numOfPrintsAfterLast);
 
 };
 
