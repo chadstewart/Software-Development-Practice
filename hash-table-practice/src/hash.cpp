@@ -126,5 +126,99 @@ void hash::printItemsInIndex(int index)
 
 }
 
+void hash::findDrink(string name)
+{
+	int index = this->hash(name);
+	bool foundName = false;
+	string drink;
+
+	itemPtr ptr = hashTable[index];
+
+	while(ptr != NULL)
+	{
+		if(ptr->name == name)
+		{
+			drink = ptr->favDrink;
+			foundName = true;
+			break;
+		}
+		else
+		{
+			ptr = ptr->next;
+		}
+	}
+
+	if(foundName == true)
+	{
+		cout << "Favorite drink of " << name << " is: " << drink  << endl;
+	}
+	else
+	{
+		cout << name << " was not found." << endl;
+	}
+
+}
+
+void hash::removeItem(string name)
+{
+	int index = this->hash(name);
+
+	itemPtr delPtr;
+	itemPtr ptr1;
+	itemPtr ptr2;
+
+	//Case 0 - bucket is empty
+
+	if(hashTable[index]->name == "empty")
+	{
+		cout << "Item was not found." << endl;
+	}//Case 1 - only one item and has matching name
+	else if(hashTable[index]->name == name && hashTable[index]->next == NULL)
+	{
+		hashTable[index]->name = "empty";
+		hashTable[index]->favDrink = "empty";
+
+		cout << name << " was removed from the hash table." << endl;
+	}//Case 2 - first item of a bucket with multiple items
+	else if(hashTable[index]->name == name && hashTable[index]->next != NULL)
+	{
+		delPtr = hashTable[index];
+		hashTable[index] = hashTable[index]->next;
+		delete delPtr;
+
+		cout << name << " was removed from the hash table." << endl;
+	}//Case 3 - bucket contains items but first item is not a match //3.1 - no match
+	else if(hashTable[index]->name != name && hashTable[index]->next != NULL)
+	{
+		ptr1 = hashTable[index]->next;
+		ptr2 = hashTable[index];
+
+		while(ptr1 != NULL && ptr1->name != name)
+		{
+			ptr2 = ptr1;
+			ptr1 = ptr1->next;
+		}
+
+		if(ptr1 == NULL)
+		{
+			cout << name << " was not found." << endl;
+		}//3.2 - match found
+		else
+		{
+			delPtr = ptr1;
+			ptr1 = ptr1->next;
+			ptr2->next = ptr1;
+
+			delete delPtr;
+
+			cout << name << " was removed from the hash table." << endl;
+		}
+	}
+
+
+
+
+}
+
 
 

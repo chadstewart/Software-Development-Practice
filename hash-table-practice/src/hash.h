@@ -36,6 +36,8 @@ public:
 	int numOfItemsInIndex(int index);
 	void printTable();
 	void printItemsInIndex(int index);
+	void findDrink(string name);
+	void removeItem(string name);
 
 
 };
