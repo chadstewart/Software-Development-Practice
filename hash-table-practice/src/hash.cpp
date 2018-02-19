@@ -18,24 +18,25 @@ hash::hash()
 	}
 }
 
-int hash::hash(string key)
+int hash::createHash(string key)
 {
 	int hash = 0;
-	int index ;
+	int index;
+	int stringLength = key.length();
 
-	for(int i = 0; i < index; i++)
+	for(int i = 0; i < stringLength; i++)
 	{
 		hash = hash + (int)key[i];
 	}
 
 	index = hash % tableSize;
 
-	return key;
+	return index;
 }
 
 void hash::addItem(string name, string favDrink)
 {
-	int index = hash(name);
+	int index = createHash(name);
 
 	if(hashTable[index]->name == "empty")
 	{
@@ -128,7 +129,7 @@ void hash::printItemsInIndex(int index)
 
 void hash::findDrink(string name)
 {
-	int index = this->hash(name);
+	int index = createHash(name);
 	bool foundName = false;
 	string drink;
 
@@ -161,7 +162,7 @@ void hash::findDrink(string name)
 
 void hash::removeItem(string name)
 {
-	int index = this->hash(name);
+	int index = createHash(name);
 
 	itemPtr delPtr;
 	itemPtr ptr1;

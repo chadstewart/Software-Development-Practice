@@ -31,7 +31,8 @@ private:
 
 public:
 
-	int hash(string key);
+	hash();
+	int createHash(string key);
 	void addItem(string name, string favDrink);
 	int numOfItemsInIndex(int index);
 	void printTable();
